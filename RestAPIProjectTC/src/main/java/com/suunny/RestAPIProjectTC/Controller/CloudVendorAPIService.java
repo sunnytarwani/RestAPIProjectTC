@@ -2,8 +2,11 @@ package com.suunny.RestAPIProjectTC.Controller;
 
 
 import com.suunny.RestAPIProjectTC.Model.CloudVendor;
+import com.suunny.RestAPIProjectTC.Response.ResponseHandler;
 import com.suunny.RestAPIProjectTC.service.CloudVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +20,9 @@ public class CloudVendorAPIService {
     CloudVendorService cloudVendorService;
 
     @GetMapping("{vendorId}")
-    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId) throws ClassNotFoundException {
-        return cloudVendorService.getCloudVendor(vendorId);
+    public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId) throws ClassNotFoundException {
+        return ResponseHandler.responseBuilder("Requested Vendor Deatils are given here" ,
+                HttpStatus.OK ,cloudVendorService.getCloudVendor(vendorId));
     }
 
     //To get all the cloudVendors details present in DB
