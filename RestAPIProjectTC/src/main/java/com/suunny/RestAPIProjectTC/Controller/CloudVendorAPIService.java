@@ -17,7 +17,7 @@ public class CloudVendorAPIService {
     CloudVendorService cloudVendorService;
 
     @GetMapping("{vendorId}")
-    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
+    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId) throws ClassNotFoundException {
         return cloudVendorService.getCloudVendor(vendorId);
     }
 

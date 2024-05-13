@@ -1,5 +1,6 @@
 package com.suunny.RestAPIProjectTC.service.impl;
 
+import com.suunny.RestAPIProjectTC.Exception.CloudVendorExceptionNotFound;
 import com.suunny.RestAPIProjectTC.Model.CloudVendor;
 import com.suunny.RestAPIProjectTC.Repository.CloudVendorRepository;
 import com.suunny.RestAPIProjectTC.service.CloudVendorService;
@@ -19,7 +20,11 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
 
     @Override
-    public CloudVendor getCloudVendor(String cloudVendorId) {
+    public CloudVendor getCloudVendor(String cloudVendorId) throws ClassNotFoundException{
+        if(cloudVendorRepository.findById(cloudVendorId).isEmpty()){
+            throw new CloudVendorExceptionNotFound("Id: " + cloudVendorId + " not found in DB!");
+        }
+
         return cloudVendorRepository.findById(cloudVendorId).get();
     }
 
