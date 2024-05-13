@@ -3,6 +3,7 @@ package com.suunny.RestAPIProjectTC.service.impl;
 import com.suunny.RestAPIProjectTC.Model.CloudVendor;
 import com.suunny.RestAPIProjectTC.Repository.CloudVendorRepository;
 import com.suunny.RestAPIProjectTC.service.CloudVendorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +14,8 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
 
     //Business Logic is written inside the Service Package
+    @Autowired
     CloudVendorRepository cloudVendorRepository;
-
-    public CloudVendorServiceImpl(CloudVendorRepository cloudVendorRepository) {
-        this.cloudVendorRepository = cloudVendorRepository;
-    }
 
 
     @Override

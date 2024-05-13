@@ -3,6 +3,7 @@ package com.suunny.RestAPIProjectTC.Controller;
 
 import com.suunny.RestAPIProjectTC.Model.CloudVendor;
 import com.suunny.RestAPIProjectTC.service.CloudVendorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +12,9 @@ import java.util.List;
 @RequestMapping("/cloudVendor")
 public class CloudVendorAPIService {
 
+
+    @Autowired
     CloudVendorService cloudVendorService;
-
-    public CloudVendorAPIService(CloudVendorService cloudVendorService) {
-        this.cloudVendorService = cloudVendorService;
-    }
-
 
     @GetMapping("{vendorId}")
     public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
@@ -30,14 +28,11 @@ public class CloudVendorAPIService {
     }
 
 
-
     @PostMapping
     public String addCloudVendor(@RequestBody CloudVendor cloudVendor){
         cloudVendorService.createCloudVendor(cloudVendor);
         return "Cloud Vendor Added Successfully";
     }
-
-
 
     //to update the details in the DB
     @PutMapping
@@ -45,7 +40,6 @@ public class CloudVendorAPIService {
         cloudVendorService.updateCloudVendor(cloudVendor);
         return "Cloud Vendor Updated Successfully";
     }
-
 
     @DeleteMapping("{vendorId}")
     public String putCloudVendor(@PathVariable("vendorId") String vendorId){
