@@ -4,12 +4,14 @@ import com.suunny.RestAPIProjectTC.Exception.CloudVendorExceptionNotFound;
 import com.suunny.RestAPIProjectTC.Model.CloudVendor;
 import com.suunny.RestAPIProjectTC.Repository.CloudVendorRepository;
 import com.suunny.RestAPIProjectTC.service.CloudVendorService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
+@AllArgsConstructor
 @Service
 public class CloudVendorServiceImpl implements CloudVendorService {
 
@@ -50,4 +52,11 @@ public class CloudVendorServiceImpl implements CloudVendorService {
         cloudVendorRepository.deleteById(cloudVendorId);
         return "Successfully Deleted";
     }
+
+    @Override
+    public List<CloudVendor> getByVendorName(String vendorName) {
+        return cloudVendorRepository.findByVendorName(vendorName);
+    }
+
+
 }

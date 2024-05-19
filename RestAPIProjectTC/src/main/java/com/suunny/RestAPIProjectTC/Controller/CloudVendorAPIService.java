@@ -19,33 +19,33 @@ public class CloudVendorAPIService {
     @Autowired
     CloudVendorService cloudVendorService;
 
-    @GetMapping("{vendorId}")
+    @GetMapping("/get/{vendorId}")
     public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId) throws ClassNotFoundException {
         return ResponseHandler.responseBuilder("Requested Vendor Deatils are given here" ,
                 HttpStatus.OK ,cloudVendorService.getCloudVendor(vendorId));
     }
 
     //To get all the cloudVendors details present in DB
-    @GetMapping()
+    @GetMapping("/all")
     public List<CloudVendor> getAllCloudVendorDetails(){
         return cloudVendorService.getAllCloudVendor();
     }
 
 
-    @PostMapping
+    @PostMapping("/post")
     public String addCloudVendor(@RequestBody CloudVendor cloudVendor){
         cloudVendorService.createCloudVendor(cloudVendor);
         return "Cloud Vendor Added Successfully";
     }
 
     //to update the details in the DB
-    @PutMapping
+    @PutMapping("/put")
     public String updateCloudVendor(@RequestBody CloudVendor cloudVendor){
         cloudVendorService.updateCloudVendor(cloudVendor);
         return "Cloud Vendor Updated Successfully";
     }
 
-    @DeleteMapping("{vendorId}")
+    @DeleteMapping("/delete/{vendorId}")
     public String putCloudVendor(@PathVariable("vendorId") String vendorId){
         cloudVendorService.deleteCloudVendor(vendorId);
         return "Cloud Vendor Deleted Successfully";
