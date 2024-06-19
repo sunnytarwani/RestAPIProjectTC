@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/cloudVendor")
 public class CloudVendorAPIService {
-
-
     @Autowired
     CloudVendorService cloudVendorService;
 
